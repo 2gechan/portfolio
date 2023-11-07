@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gechan.futsal.dao.FileDao">
+
+	<insert id="insert">
+		insert into tbl_images (i_fcnumber, i_originalName, i_uploadName)
+		<foreach open="VALUES" collection="list" item="DTO"
+			separator=",">
+			(#{f_cnumber}, #{DTO.i_originalName}, #{DTO.i_uploadName})
+		</foreach>
+	</insert>
+
+</mapper> 

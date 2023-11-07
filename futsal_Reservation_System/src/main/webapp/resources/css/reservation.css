@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+div.field.list {
+  background-color: #eee;
+  width: 80%;
+  height: 70%;
+  margin: 50px auto;
+  padding: 50px;
+  border: 1px solid green;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div.fieldImage {
+  margin: 10px;
+}
+
+div.fieldImage a {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+div.fieldImage a span {
+  margin: 5px auto;
+}

@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+form.main.login {
+  width: 50%;
+  height: 40%;
+  margin: 40px auto;
+  border-radius: 8px;
+  background-color: wheat;
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+div.login {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+div.login label {
+  flex: 1;
+  color: blue;
+}
+
+div.login input {
+  flex: 2;
+  padding: 5px;
+}
+
+div.error.login {
+  margin: 10px auto;
+  color: red;
+}
