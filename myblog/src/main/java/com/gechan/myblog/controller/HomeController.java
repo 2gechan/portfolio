@@ -21,7 +21,7 @@ public class HomeController {
         this.contentService = contentService;
     }
 
-    @GetMapping("home")
+    @GetMapping("/")
     public String home() {
         return "home";
     }
