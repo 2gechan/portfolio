@@ -1,0 +1,17 @@
+section.intro {
+    width: 90%;
+    height: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+section.intro div {
+    flex: 1;
+    margin: 8px;
+}
+
+section.intro div ul li {
+    padding: 7px;
+    margin-left: 2rem;
+}

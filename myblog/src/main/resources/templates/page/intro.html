@@ -1,0 +1,66 @@
+<html
+        lang="ko"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{/home}"
+>
+<section th:fragment="intro" class="intro">
+    <h1>About Me</h1>
+    <div class="myImage">
+        <img th:src="@{/images/profile_image.jpeg}">
+
+    </div>
+    <div class="info">
+        <strong>기본사항</strong>
+        <ul>
+            <li>이세찬</li>
+            <li>개인 이메일 주소 : tpcnsdl@naver.com</li>
+            <li>깃허브 주소 : github.com/2gechan</li>
+            <li>전화번호 : 010-2031-5326</li>
+        </ul>
+    </div>
+    <div class="major"><strong>학력</strong>
+        <ul>
+            <li>동신대학교 정보보안학과</li>
+        </ul>
+    </div>
+    <div class="career">
+        <strong>경력사항</strong>
+        <button class="intro button career" type="button">+</button>
+
+        <ul>
+            <th:block th:each="CONTENT : ${CONTENTLIST}">
+                <li th:if="${CONTENT.c_category == '경력'}">
+                    <span th:text="${CONTENT.c_date}"></span> : <span th:text="${CONTENT.c_content}"></span>
+                </li>
+            </th:block>
+        </ul>
+    </div>
+    <div class="edu">
+        <strong>교육사항</strong>
+        <button class="intro button edu" type="button">+</button>
+
+        <ul>
+            <th:block th:each="CONTENT : ${CONTENTLIST}">
+                <li th:if="${CONTENT.c_category == '교육'}">
+                    <span th:text="${CONTENT.c_date}"></span> : <span th:text="${CONTENT.c_content}"></span>
+                </li>
+            </th:block>
+        </ul>
+    </div>
+    <div class="cert">
+        <strong>자격증</strong>
+        <button class="intro button cert" type="button">+</button>
+
+        <ul>
+            <th:block th:each="CONTENT : ${CONTENTLIST}">
+                <li th:if="${CONTENT.c_category == '자격증'}">
+                    <span th:text="${CONTENT.c_date}"></span> : <span th:text="${CONTENT.c_content}"></span>
+                </li>
+            </th:block>
+        </ul>
+    </div>
+
+</section>
+
+</html>

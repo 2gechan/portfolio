@@ -1,0 +1,48 @@
+<html
+        lang="ko"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{/home}"
+>
+<section th:fragment="update" class="update">
+    <th:block th:if="${CATEGORY == 'CAREER'}">
+        <h1>경력 사항 추가</h1>
+    </th:block>
+    <th:block th:if="${CATEGORY == 'EDU'}">
+        <h1>교육 사항 추가</h1>
+    </th:block>
+    <th:block th:if="${CATEGORY == 'CERT'}">
+        <h1>자격증 추가</h1>
+    </th:block>
+
+    <form th:action="@{/update}" method="POST">
+
+        <div>
+            <label>항목</label>
+
+            <th:block th:if="${CATEGORY == 'CAREER'}">
+                <input th:value="경력" name="c_category" readonly/>
+            </th:block>
+            <th:block th:if="${CATEGORY == 'EDU'}">
+                <input th:value="교육" name="c_category" readonly/>
+            </th:block>
+            <th:block th:if="${CATEGORY == 'CERT'}">
+                <input th:value="자격증" name="c_category" readonly/>
+            </th:block>
+        </div>
+        <div>
+            <label>날짜(기간)</label>
+            <input placeholder="날짜(기간)을 입력하세요" name="c_date"/>
+        </div>
+        <div>
+            <label>내용</label>
+            <input placeholder="내용을 입력하세요" name="c_content"/>
+        </div>
+        <div>
+            <button>추가하기</button>
+        </div>
+    </form>
+</section>
+
+
+</html>

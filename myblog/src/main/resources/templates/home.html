@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ltraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>MyBlog</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/intro.css}"/>
+    <link rel="stylesheet" th:href="@{/css/portfolio.css}" />
+    <link rel="stylesheet" th:href="@{/css/update.css}" />
+    <link rel="stylesheet" th:href="@{/css/board.css}" />
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/intro.js}"></script>
+    <script th:src="@{/js/board.js}"></script>
+</head>
+<body>
+<header th:replace="~{include :: header}"/>
+
+<div class="main body">
+    <th:block th:if="${BODY == null}">
+        <img class="main image" th:src="@{/images/main_developer.jpg}"/>
+    </th:block>
+
+    <th:block th:if="${BODY == 'INTRO'}">
+        <section th:replace="~{page/intro :: intro}"/>
+    </th:block>
+
+    <th:block th:if="${BODY == 'PORTFOLIO'}">
+        <section th:replace="~{page/portfolio :: portfolio}"/>
+    </th:block>
+
+    <th:block th:if="${BODY == 'UPDATE'}">
+        <section th:replace="~{page/update :: update}"/>
+    </th:block>
+
+    <th:block th:if="${BODY == 'BOARD'}">
+        <section th:replace="~{page/board :: board}"/>
+    </th:block>
+
+    <th:block th:if="${BODY == 'BOARD_WRITE'}">
+        <section th:replace="~{page/board :: write}"/>
+    </th:block>
+
+    <th:block th:if="${BODY == 'BOARD_DETAIL'}">
+        <section th:replace="~{page/board :: detail}"/>
+    </th:block>
+
+    <th:block th:if="${BODY == 'BOARD_UPDATE'}">
+        <section th:replace="~{page/board :: update}"/>
+    </th:block>
+
+    <footer th:replace="~{include :: footer}"/>
+</div>
+</body>
+</html>

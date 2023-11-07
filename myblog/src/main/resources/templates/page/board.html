@@ -1,0 +1,142 @@
+<html
+        lang="ko"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{/home}"
+>
+<section th:fragment="board" class="board">
+    <h1>게시판</h1>
+
+    <div class="board container">
+        <ul class="board category">
+            <li class="all">전체 글 보기</li>
+            <th:block th:each="CA : ${CATEGORY}">
+                <li th:text="${CA.category}" th:class="${CA.ct_seq}"></li>
+            </th:block>
+        </ul>
+        <div class="board main">
+            <div class="board button">
+                <button class="board button write">글쓰기</button>
+            </div>
+
+            <table class="board list">
+                <tr class="table header">
+                    <th>제목</th>
+                    <th>작성자</th>
+                </tr>
+                <th:block th:each="BOARD : ${BOARDLIST}">
+                    <tr th:class="${BOARD.b_seq}">
+                        <td th:text="${BOARD.b_title}"></td>
+                        <td th:text="${BOARD.b_writer}"></td>
+                    </tr>
+                </th:block>
+            </table>
+
+            <div class="pagination">
+                <th:block th:each="i: ${#numbers.sequence(1, PAGE)}">
+                    <span th:class="${BOARD.b_category}" th:data-id="${i}" th:text="${i}"></span>
+                </th:block>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section th:fragment="write" class="board">
+    <h1>게시판</h1>
+
+    <div class="board write">
+        <form method="POST" th:action="@{/board/write}">
+            <div class="board input">
+                <label>제목</label><input placeholder="제목" name="b_title"/>
+            </div>
+            <div class="board input">
+                <label>카테고리</label><input placeholder="카테고리" name="b_category"/>
+            </div>
+            <div class="board input">
+                <label>작성자</label><input placeholder="작성자" name="b_writer"/>
+            </div>
+            <div class="board input">
+                <label>작성 날짜</label><input placeholder="작성 날짜" name="b_date" th:value="${DATE}" readonly/>
+            </div>
+            <div class="board input">
+                <label>내용</label><textarea placeholder="내용" name="b_text" rows="10" cols=""></textarea>
+            </div>
+            <div class="board input button">
+                <button type="submit">글 등록</button>
+                <button type="button" class="returnhome">뒤로가기</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+<section th:fragment="detail" class="detail">
+    <h1>Detail</h1>
+
+    <div class="board detail" th:id="${BOARD.b_seq}">
+        <div class="board input">
+            <label>제목</label>
+            <input disabled th:value="${BOARD.b_title}"/>
+        </div>
+        <div class="board input">
+            <label>작성자</label>
+            <input disabled th:value="${BOARD.b_writer}"/>
+        </div>
+        <div class="board input">
+            <label>작성날짜</label>
+            <input disabled th:value="${BOARD.b_date}"/>
+        </div>
+        <div class="board input">
+            <label>카테고리</label>
+            <input disabled th:value="${BOARD.b_category}"/>
+        </div>
+        <div class="board input">
+            <label>글 내용</label>
+            <textarea disabled th:text="${BOARD.b_text}" rows="10" cols=""/>
+        </div>
+        <div class="board input button">
+            <button type="button" class="returnhome">뒤로가기</button>
+            <button type="button" th:class="update" th:data-id="${BOARD.b_seq}">수정하기</button>
+            <button type="button" th:class="delete" th:data-id="${BOARD.b_seq}">삭제하기</button>
+        </div>
+    </div>
+</section>
+
+<section th:fragment="update" class="board">
+    <h1>글 수정</h1>
+
+    <div class="board write">
+        <form method="POST" th:action="@{/board/write}">
+            <div class="board input">
+                <label>게시글 번호</label>
+                <input placeholder="게시글 번호" name="b_seq" th:value="${BOARD.b_seq}" readonly/>
+            </div>
+            <div class="board input">
+                <label>제목</label>
+                <input placeholder="제목" name="b_title" th:value="${BOARD.b_title}"/>
+            </div>
+            <div class="board input">
+                <label>카테고리</label>
+                <input placeholder="카테고리" name="b_category" th:value="${BOARD.b_category}" readonly/>
+            </div>
+            <div class="board input">
+                <label>작성자</label>
+                <input placeholder="작성자" name="b_writer" th:value="${BOARD.b_writer}"/>
+            </div>
+            <div class="board input">
+                <label>작성 날짜</label>
+                <input placeholder="작성 날짜" name="b_date" th:value="${BOARD.b_date}" readonly/>
+            </div>
+            <div class="board input">
+                <label>내용</label>
+                <textarea placeholder="내용" name="b_text" rows="10" cols="" th:text="${BOARD.b_text}"></textarea>
+            </div>
+            <div class="board input button">
+                <button type="submit">글 수정</button>
+                <button type="button" class="returnhome">뒤로가기</button>
+            </div>
+        </form>
+    </div>
+</section>
+</html>
