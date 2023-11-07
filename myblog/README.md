@@ -1,4 +1,5 @@
 # Spring-Boot Gradle을 이용한 MyBlog 개인 프로젝트
+- 나의 개인 이력들을 문서로 관리하거나 채용사이트를 이용하여 관리하였으나 개인적으로 편리하게 관리하기 위한 프로젝트
 
 ## Framework
 - Spring-Boot
