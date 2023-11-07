@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  font-style: inherit;
+  text-decoration: none;
+}
+
+html {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(208, 233, 248);
+}
+
+div.mypage {
+  margin: 10px auto;
+  background-color: antiquewhite;
+  width: 70%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+header {
+  margin: 10px auto;
+  text-align: center;
+}
+
+h1 {
+  color: green;
+}
+
+div.mypage div {
+  margin: 5px auto;
+  width: 80%;
+  padding: 8px;
+}
+
+div.mypage strong {
+  border-bottom: 1px solid #eee;
+}
+
+div.button {
+  width: 8%;
+  display: flex;
+  border: none;
+}
+
+div.button a {
+  background-color: chartreuse;
+  padding: 5px;
+  margin: 3px;
+  border-radius: 3px;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+a:active {
+  background-color: chocolate;
+}
+
+div.mypage div div {
+  border: 1px solid black;
+}
+
+div.message_box {
+  font-size: 25px;
+}
