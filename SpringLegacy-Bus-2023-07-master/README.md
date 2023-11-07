@@ -5,13 +5,16 @@
 ## Framework
 - Spring3
 
+## IDE
+- STS3
+
 # 개발 도구
 
 ## Front-End
-- HTML, CSS, JavaScript
+- JSP, CSS, JavaScript
 
 ## Back-End
-- STS(Spring Framework), MySQL, Mybatis
+- SpringFramework, MySQL, Mybatis
 
 ## Dependency
 - Spring JDBC
