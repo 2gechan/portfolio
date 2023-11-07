@@ -1,4 +1,4 @@
-# bus_back_spring_legacy
+# bus_back_spring_legacy 팀 프로젝트
 - 시외버스 API를 이용한 springLegacy Project
 - 일부 노후화된 터미널이나 버스 정류장에서 탑승하는 승객들을 위해 정류하는 시외버스 시간표를 웹을 통해 언제 어디서나 편하게 갱신된 시간표를 확인하기 위한 프로젝트
 
