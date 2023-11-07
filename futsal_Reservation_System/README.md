@@ -1,1 +1,1 @@
-# SpringLegacy를 이용한 풋살 구장 예약 시스템
+# SpringLegacy를 이용한 풋살 구장 예약 시스템 개인 프로젝트
