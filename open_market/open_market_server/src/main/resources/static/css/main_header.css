@@ -1,0 +1,19 @@
+div.main.header {
+    display: flex;
+    flex-direction: column;
+}
+
+div.title_bar {
+    display: flex;
+}
+
+div.category nav{
+    list-style: none;
+    padding: 5px;
+    display: flex;
+}
+
+div.category nav span {
+    margin: 5px;
+    padding: 4px;
+}
