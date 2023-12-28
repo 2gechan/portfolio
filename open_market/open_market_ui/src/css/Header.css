@@ -1,0 +1,18 @@
+h1.main_title {
+  margin-right: 20px;
+}
+
+ul.main_menu_bar {
+  list-style: none;
+  display: flex;
+}
+
+ul.main_menu_bar a {
+  height: 25px;
+  /* background-color: red; */
+  margin: 7px;
+}
+
+ul.main_menu_bar a:hover {
+  border-bottom: 1px solid gray;
+}

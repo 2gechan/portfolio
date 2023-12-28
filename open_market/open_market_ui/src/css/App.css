@@ -1,0 +1,6 @@
+header.main_header {
+  background-color: green;
+  display: flex;
+  height: 70px;
+  padding: 10px;
+}

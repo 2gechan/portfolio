@@ -1,10 +1,18 @@
-import "./App.css";
-import ShopMain from "./comps/ShopMain";
+import { Outlet } from "react-router";
+import Header from "./comps/Header";
+
+import "./css/App.css";
+import "./css/Header.css";
 
 function App() {
   return (
     <div className="App">
-      <ShopMain />
+      <header className="main_header">
+        <Header />
+      </header>
+      <div className="main_body">
+        <Outlet />
+      </div>
     </div>
   );
 }
