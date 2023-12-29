@@ -11,13 +11,48 @@ const UserJoin = () => {
     console.log(name, value);
   };
 
-  const joinBtnClickHandler = () => {};
+  const joinBtnClickHandler = async () => {
+    const res = await fetch("/join", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(joinUser),
+    });
+    if (res.status === 200) {
+      const data = await res.text();
+      console.log(data);
+    } else {
+      alert("회원가입 실패");
+    }
+  };
+
+  const idValidateBtn = async () => {
+    if (joinUser.u_id === "") {
+      alert("id를 입력하세요");
+    } else {
+      const res = await fetch("/idValidate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: joinUser.u_id,
+      });
+      if (res.status === 200) {
+        const data = await res.text();
+        alert(data);
+      } else {
+        alert("다시 시도하세요");
+      }
+    }
+  };
 
   return (
     <div className="join_form">
       <div>
         <label>아이디</label>
         <input name="u_id" placeholder="아이디" onChange={inputChangeHandler} />
+        <button onClick={idValidateBtn}>중복 확인</button>
       </div>
       <div>
         <label>패스워드</label>

@@ -1,9 +1,16 @@
 package com.gechan.projectshop.models.user;
 
+import lombok.*;
+
 import javax.persistence.*;
 
 @Table(name = "shop_user")
 @Entity
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserDto {
 
     @Id
