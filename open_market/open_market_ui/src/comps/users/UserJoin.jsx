@@ -28,7 +28,7 @@ const UserJoin = () => {
   };
 
   const idValidateBtn = async () => {
-    if (joinUser.u_id === "") {
+    if (!joinUser.u_id) {
       alert("id를 입력하세요");
     } else {
       const res = await fetch("/idValidate", {
@@ -36,7 +36,7 @@ const UserJoin = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: joinUser.u_id,
+        body: JSON.stringify(joinUser),
       });
       if (res.status === 200) {
         const data = await res.text();

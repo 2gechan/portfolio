@@ -15,20 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserService userService;
-    
+
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
     @PostMapping("/idValidate")
-    public String idValidate(@RequestBody String u_id) {
-
+    public String idValidate(@RequestBody UserDto user) {
+        log.debug("입력된 아이디 {}", user.getU_id());
+        return userService.userValidate(user);
     }
 
     @PostMapping("/join")
     public String join(@RequestBody UserDto user) {
-        System.out.println(user.toString());
         log.debug("회원가입 정보 : {}", user.toString());
         return "회원가입 성공";
     }
