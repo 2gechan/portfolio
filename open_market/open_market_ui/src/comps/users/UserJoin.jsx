@@ -12,18 +12,30 @@ const UserJoin = () => {
   };
 
   const joinBtnClickHandler = async () => {
-    const res = await fetch("/join", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(joinUser),
-    });
-    if (res.status === 200) {
-      const data = await res.text();
-      console.log(data);
+    if (
+      !(
+        joinUser.u_id ||
+        joinUser.u_password ||
+        joinUser.u_name ||
+        joinUser.u_nickname ||
+        joinUser.u_phone
+      )
+    ) {
+      alert("입력 폼을 모두 입력해주세요");
     } else {
-      alert("회원가입 실패");
+      const res = await fetch("/join", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(joinUser),
+      });
+      if (res.status === 200) {
+        const data = await res.json();
+        console.log(data);
+      } else {
+        alert("회원가입 실패");
+      }
     }
   };
 

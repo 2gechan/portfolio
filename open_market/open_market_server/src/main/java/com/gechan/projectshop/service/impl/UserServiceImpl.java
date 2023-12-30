@@ -24,7 +24,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String userJoinSuccess(UserDto joinUser) {
-        return null;
+    public UserDto userJoin(UserDto joinUser) {
+        UserDto user = userRepository.save(joinUser);
+        return user;
     }
 }

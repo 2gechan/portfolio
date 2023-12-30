@@ -28,8 +28,8 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public String join(@RequestBody UserDto user) {
+    public UserDto join(@RequestBody UserDto user) {
         log.debug("회원가입 정보 : {}", user.toString());
-        return "회원가입 성공";
+        return userService.userJoin(user);
     }
 }
