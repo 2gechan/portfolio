@@ -1,0 +1,47 @@
+div.join_form {
+  width: 600px;
+  height: 500px;
+  border: 1px soild black;
+  background-color: antiquewhite;
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+h1.join_title {
+  margin-bottom: 2rem;
+}
+
+div.join_div {
+  width: 20rem;
+  display: flex;
+  margin: 10px;
+  /* border: 1px solid green; */
+}
+
+div.join_div label {
+  margin-top: 4px;
+  flex: 1;
+}
+
+div.join_div input {
+  padding: 5px;
+  flex: 2;
+}
+
+div.join_div.id {
+  width: 23.8rem;
+  margin-left: 4.5rem;
+}
+
+div.join_div.id input {
+  margin-right: 5px;
+}
+
+div.join_div.btn button {
+  width: 100%;
+  padding: 8px 16px;
+}

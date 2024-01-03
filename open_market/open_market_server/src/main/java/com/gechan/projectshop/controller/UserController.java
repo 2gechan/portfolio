@@ -32,4 +32,10 @@ public class UserController {
         log.debug("회원가입 정보 : {}", user.toString());
         return userService.userJoin(user);
     }
+
+    @PostMapping("/login")
+    public String login(@RequestBody UserDto user) {
+        log.debug("로그인 정보 : {}", user.toString());
+        return userService.userLogin(user);
+    }
 }

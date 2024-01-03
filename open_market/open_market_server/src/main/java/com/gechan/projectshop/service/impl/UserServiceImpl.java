@@ -24,6 +24,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public String userLogin(UserDto loginUser) {
+        UserDto dto = userRepository.findById(loginUser.getU_id()).orElse(null);
+        if (dto != null && dto.getU_id().equals(loginUser.getU_id())) {
+            return "OK";
+        } else return "FAIL";
+    }
+
+    @Override
     public UserDto userJoin(UserDto joinUser) {
         UserDto user = userRepository.save(joinUser);
         return user;

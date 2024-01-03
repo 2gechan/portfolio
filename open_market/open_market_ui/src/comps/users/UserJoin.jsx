@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
-import "../../css/UserJoin.css";
+import "../../css/Users.css";
+import { useNavigate } from "react-router-dom";
 
 const UserJoin = () => {
   const [joinUser, setJoinUser] = useState({});
+  const navigate = useNavigate();
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
     setJoinUser({ ...joinUser, [name]: value });
-    console.log(name, value);
+    // console.log(name, value);
   };
 
   const joinBtnClickHandler = async () => {
@@ -33,6 +35,8 @@ const UserJoin = () => {
       if (res.status === 200) {
         const data = await res.json();
         console.log(data);
+        alert("회원가입 완료!");
+        navigate("/");
       } else {
         alert("회원가입 실패");
       }
@@ -41,7 +45,7 @@ const UserJoin = () => {
 
   const idValidateBtn = async () => {
     if (!joinUser.u_id) {
-      alert("id를 입력하세요");
+      alert("ID를 입력하세요");
     } else {
       const res = await fetch("/idValidate", {
         method: "POST",
@@ -59,26 +63,56 @@ const UserJoin = () => {
     }
   };
 
+  const pwdSameValidate = (e) => {
+    const value = e.target.value;
+    if (!joinUser.u_password) {
+      alert("패스워드를 먼저 입력해주세요");
+      pwd1Focus.current.focus();
+    } else if (joinUser.u_password === value) {
+      alert("패스워드가 일치합니다.");
+    }
+  };
+
+  const pwd1Focus = useRef(null);
+
   return (
     <div className="join_form">
-      <div>
+      <h1 className="join_title">회원가입</h1>
+      <div className="join_div id">
         <label>아이디</label>
-        <input name="u_id" placeholder="아이디" onChange={inputChangeHandler} />
+        <input
+          name="u_id"
+          placeholder="아이디"
+          onChange={inputChangeHandler}
+          autoFocus
+        />
         <button onClick={idValidateBtn}>중복 확인</button>
       </div>
-      <div>
+
+      <div className="join_div">
         <label>패스워드</label>
         <input
           name="u_password"
           placeholder="비밀번호"
+          type="password"
           onChange={inputChangeHandler}
+          ref={pwd1Focus}
         />
       </div>
-      <div>
+      <div className="join_div">
+        <label>패스워드 확인</label>
+        <input
+          name="u_password2"
+          type="password"
+          placeholder="비밀번호 확인"
+          onBlur={pwdSameValidate}
+        />
+      </div>
+      <div className="join_div">
         <label>이름</label>
         <input name="u_name" placeholder="이름" onChange={inputChangeHandler} />
       </div>
-      <div>
+      <div className="join_div">
         <label>닉네임</label>
         <input
           name="u_nickname"
@@ -86,7 +120,7 @@ const UserJoin = () => {
           onChange={inputChangeHandler}
         />
       </div>
-      <div>
+      <div className="join_div">
         <label>전화번호</label>
         <input
           name="u_phone"
@@ -94,7 +128,7 @@ const UserJoin = () => {
           onChange={inputChangeHandler}
         />
       </div>
-      <div>
+      <div className="join_div btn">
         <button onClick={joinBtnClickHandler}>회원가입</button>
       </div>
     </div>
