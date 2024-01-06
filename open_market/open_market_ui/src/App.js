@@ -3,6 +3,7 @@ import Header from "./comps/Header";
 
 import "./css/App.css";
 import "./css/Header.css";
+import "./css/Users.css";
 
 function App() {
   return (

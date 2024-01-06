@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 
-import "../../css/Users.css";
 import { useNavigate } from "react-router-dom";
 
 const UserJoin = () => {

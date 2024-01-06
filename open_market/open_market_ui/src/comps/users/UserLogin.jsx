@@ -12,23 +12,27 @@ const UserLogin = () => {
   };
 
   const loginBtnClickHandler = async () => {
-    const res = await fetch("/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(loginUser),
-    });
-    const text = await res.text();
-    if (text === "OK") {
-      navigate("/");
+    if (loginUser.u_id && loginUser.u_password) {
+      const res = await fetch("/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginUser),
+      });
+      const text = await res.text();
+      if (text === "OK") {
+        navigate("/");
+      } else {
+        alert("로그인 정보를 확인하세요");
+      }
     } else {
-      alert("로그인 정보를 확인하세요");
+      alert("입력창을 입력하세요");
     }
   };
   return (
-    <div>
-      <div>
+    <div className="login_form">
+      <div className="login_div">
         <label htmlFor="">아이디</label>
         <input
           placeholder="아이디를 입력하세요"
@@ -36,7 +40,7 @@ const UserLogin = () => {
           onChange={loginInputChangeHandler}
         />
       </div>
-      <div>
+      <div className="login_div">
         <label htmlFor="">비밀번호</label>
         <input
           placeholder="비밀번호를 입력하세요"
@@ -45,7 +49,7 @@ const UserLogin = () => {
           onChange={loginInputChangeHandler}
         />
       </div>
-      <div>
+      <div className="login_div btn">
         <button onClick={loginBtnClickHandler}>로그인</button>
       </div>
     </div>

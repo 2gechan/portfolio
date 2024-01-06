@@ -15,19 +15,21 @@ h1.join_title {
   margin-bottom: 2rem;
 }
 
-div.join_div {
+div.join_div,
+div.login_div {
   width: 20rem;
   display: flex;
   margin: 10px;
-  /* border: 1px solid green; */
 }
 
-div.join_div label {
+div.join_div label,
+div.login_div label {
   margin-top: 4px;
   flex: 1;
 }
 
-div.join_div input {
+div.join_div input,
+div.login_div input {
   padding: 5px;
   flex: 2;
 }
@@ -41,7 +43,21 @@ div.join_div.id input {
   margin-right: 5px;
 }
 
-div.join_div.btn button {
+div.join_div.btn button,
+div.login_div.btn button {
   width: 100%;
   padding: 8px 16px;
+}
+
+div.login_form {
+  width: 500px;
+  height: 200px;
+  border: 1px soild black;
+  background-color: antiquewhite;
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
 }

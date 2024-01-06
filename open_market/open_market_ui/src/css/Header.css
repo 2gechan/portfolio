@@ -16,3 +16,7 @@ ul.main_menu_bar a {
 ul.main_menu_bar a:hover {
   border-bottom: 1px solid gray;
 }
+
+div.cart_box {
+  display: none;
+}
