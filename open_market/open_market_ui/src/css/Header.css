@@ -7,7 +7,9 @@ ul.main_menu_bar {
   display: flex;
 }
 
-ul.main_menu_bar a {
+ul.main_menu_bar a,
+ul.main_menu_bar div.search_form,
+ul.main_menu_bar span {
   height: 25px;
   /* background-color: red; */
   margin: 7px;
@@ -17,6 +19,13 @@ ul.main_menu_bar a:hover {
   border-bottom: 1px solid gray;
 }
 
+ul.main_menu_bar a.cart {
+  width: 50px;
+}
+
 div.cart_box {
-  display: none;
+  width: 200px;
+  border: 1px solid gray;
+  margin-top: 5px;
+  padding: 3px;
 }

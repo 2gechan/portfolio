@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @Slf4j
@@ -34,8 +36,14 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody UserDto user) {
+    public String login(@RequestBody UserDto user, HttpSession httpSession) {
         log.debug("로그인 정보 : {}", user.toString());
-        return userService.userLogin(user);
+        user = userService.userLogin(user);
+        if (user != null) {
+            log.debug("로그인 실제 정보 : {}", user.toString());
+            httpSession.setAttribute("LOGINUSER", user);
+            return "OK";
+        }
+        else return "FAIL";
     }
 }

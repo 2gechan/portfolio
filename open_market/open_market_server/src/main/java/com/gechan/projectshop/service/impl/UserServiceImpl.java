@@ -24,11 +24,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String userLogin(UserDto loginUser) {
+    public UserDto userLogin(UserDto loginUser) {
         UserDto dto = userRepository.findById(loginUser.getU_id()).orElse(null);
         if (dto != null && dto.getU_id().equals(loginUser.getU_id())) {
-            return "OK";
-        } else return "FAIL";
+            return dto;
+        } else return dto;
     }
 
     @Override

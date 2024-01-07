@@ -32,6 +32,7 @@ const UserLogin = () => {
   };
   return (
     <div className="login_form">
+      <h1 className="login_title">로그인</h1>
       <div className="login_div">
         <label htmlFor="">아이디</label>
         <input

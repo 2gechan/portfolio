@@ -39,10 +39,11 @@ const Header = () => {
               <span>카트</span>
             </div>
           ) : (
-            <div>카트가림</div>
+            <></>
           )}
         </NavLink>
-        <div>
+        <span>유저</span>
+        <div className="search_form">
           <input placeholder="검색어를 입력하세요" />
           <button>검색</button>
         </div>
