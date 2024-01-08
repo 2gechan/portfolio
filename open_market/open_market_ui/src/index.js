@@ -3,6 +3,9 @@ import ReactDOM from "react-dom/client";
 import "./css/index.css";
 import reportWebVitals from "./reportWebVitals";
 import MainRouter from "./router/MainRouter";
+import { Provider } from "react-redux";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
