@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/UserReducer";
 
 const UserLogin = () => {
   const [loginUser, setLoginUser] = useState({});
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const loginInputChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -20,10 +23,14 @@ const UserLogin = () => {
         },
         body: JSON.stringify(loginUser),
       });
-      const text = await res.text();
-      if (text === "OK") {
-        navigate("/");
-      } else {
+      try {
+        if (res.status === 200) {
+          const data = await res.json();
+          console.log(data);
+          dispatch(login(data));
+          navigate("/");
+        }
+      } catch (error) {
         alert("로그인 정보를 확인하세요");
       }
     } else {

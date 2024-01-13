@@ -1,44 +1,35 @@
-const initialState = {
-  User: {
-    u_id: "",
-    u_password: "",
-    u_name: "",
-    u_nickname: "",
-    u_phone: "",
-    u_point: 0,
-  },
-};
+import { createSlice } from "@reduxjs/toolkit";
 
-const userChecker = (state = initialState, action) => {
-  switch (action.type) {
-    case "LOGIN":
-      return {
-        ...state,
-        User: {
-          ...state.User,
-          u_id: action.payload.u_id,
-          u_password: action.payload.u_password,
-          u_name: action.payload.u_name,
-          u_nickname: action.payload.u_nickname,
-          u_phone: action.payload.u_phone,
-          u_point: action.payload.u_point,
-        },
+export const user = createSlice({
+  name: "user",
+
+  initialState: {
+    user: {
+      u_id: "",
+      u_password: "",
+      u_name: "",
+      u_nickname: "",
+      u_phone: "",
+      u_point: 0,
+    },
+  },
+
+  reducers: {
+    login: (state, action) => {
+      state.user = { ...state.user, ...action.payload };
+    },
+    logout: (state) => {
+      state.user = {
+        u_id: "",
+        u_password: "",
+        u_name: "",
+        u_nickname: "",
+        u_phone: "",
+        u_point: 0,
       };
-    case "LOGOUT":
-      return {
-        ...state,
-        User: {
-          ...state.User,
-          u_id: "",
-          u_password: "",
-          u_name: "",
-          u_nickname: "",
-          u_phone: "",
-          u_point: 0,
-        },
-      };
-    default:
-      return state;
-  }
-};
-export default userChecker;
+    },
+  },
+});
+
+export const { login, logout } = user.actions;
+export default user.reducer;

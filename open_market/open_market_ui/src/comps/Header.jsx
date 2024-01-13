@@ -1,9 +1,12 @@
 import { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
   const [visible, setVisible] = useState(false);
-  const cartInfo = useRef(null);
+
+  const loginUser = useSelector((state) => state.user.user);
+
   const cartMouseOver = () => {
     setVisible(true);
   };
@@ -28,6 +31,9 @@ const Header = () => {
         <NavLink to="/mypage">
           <li>MYPAGE</li>
         </NavLink>
+        <NavLink to="/test">
+          <li>TEST-PAGE</li>
+        </NavLink>
         <NavLink
           className="cart"
           onMouseOver={cartMouseOver}
@@ -35,7 +41,7 @@ const Header = () => {
         >
           <li>CART</li>
           {visible ? (
-            <div ref={cartInfo} className="cart_box">
+            <div className="cart_box">
               <span>카트</span>
             </div>
           ) : (

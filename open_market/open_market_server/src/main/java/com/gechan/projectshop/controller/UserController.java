@@ -36,14 +36,14 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody UserDto user, HttpSession httpSession) {
+    public UserDto login(@RequestBody UserDto user, HttpSession httpSession) {
         log.debug("로그인 정보 : {}", user.toString());
         user = userService.userLogin(user);
         if (user != null) {
             log.debug("로그인 실제 정보 : {}", user.toString());
             httpSession.setAttribute("LOGINUSER", user);
-            return "OK";
+            return user;
         }
-        else return "FAIL";
+        else return null;
     }
 }

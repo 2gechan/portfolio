@@ -4,6 +4,7 @@ import ShopMain from "../comps/ShopMain";
 import UserJoin from "../comps/users/UserJoin";
 import UserLogin from "../comps/users/UserLogin";
 import MyPage from "../comps/users/MyPage";
+import TestPage from "../comps/TestPage";
 
 const MainRouter = () => {
   const router = createBrowserRouter([
@@ -15,6 +16,7 @@ const MainRouter = () => {
         { path: "/join", element: <UserJoin /> },
         { path: "login", element: <UserLogin /> },
         { path: "/mypage", element: <MyPage /> },
+        { path: "/test", element: <TestPage /> },
       ],
     },
   ]);
