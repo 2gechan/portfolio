@@ -4,10 +4,7 @@ import com.gechan.projectshop.models.user.UserDto;
 import com.gechan.projectshop.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -45,5 +42,11 @@ public class UserController {
             return user;
         }
         else return null;
+    }
+
+    @GetMapping("/logout")
+    public void logout(HttpSession httpSession) {
+        httpSession.removeAttribute("LOGINUSER");
+        log.debug("세션 정보 : {}", httpSession.getAttribute("LOGINUSER"));
     }
 }
