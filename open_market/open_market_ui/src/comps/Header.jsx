@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../redux/UserReducer";
+import { logout } from "../redux/UserSlice";
 
 const Header = () => {
   const [visible, setVisible] = useState(false);
@@ -54,6 +54,9 @@ const Header = () => {
             <NavLink to="/mypage">
               <li>MYPAGE</li>
             </NavLink>
+            <NavLink to="/test">
+              <li>{loginUser.u_nickname}</li>
+            </NavLink>
           </>
         ) : (
           <>
@@ -65,10 +68,6 @@ const Header = () => {
             </NavLink>
           </>
         )}
-
-        <NavLink to="/test">
-          <li>TEST-PAGE</li>
-        </NavLink>
         <NavLink
           className="cart"
           onMouseOver={cartMouseOver}
