@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/UserSlice";
@@ -8,6 +8,10 @@ const Header = () => {
 
   const loginUser = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   console.log(loginUser);
+  // }, [loginUser]);
 
   const cartMouseOver = () => {
     setVisible(true);
@@ -25,17 +29,16 @@ const Header = () => {
   const logoutEvent = () => {
     loginSessionRmv();
     dispatch(logout());
-    console.log(loginUser.u_id);
   };
 
-  useEffect(() => {
-    const userInfoUpdate = () => {
-      console.log("로그인 아이디 : ", loginUser.u_id);
-      console.log("로그인 비밀번호 : ", loginUser.u_password);
-      console.log("로그인 이름   : ", loginUser.u_name);
-    };
-    userInfoUpdate();
-  }, [loginUser]);
+  // useEffect(() => {
+  //   const userInfoUpdate = () => {
+  //     console.log("로그인 아이디 : ", loginUser.u_id);
+  //     console.log("로그인 비밀번호 : ", loginUser.u_password);
+  //     console.log("로그인 이름   : ", loginUser.u_name);
+  //   };
+  //   userInfoUpdate();
+  // }, [loginUser]);
 
   return (
     <>
@@ -46,16 +49,13 @@ const Header = () => {
         <NavLink to="/">
           <li>HOME</li>
         </NavLink>
-        {loginUser.u_id ? (
+        {loginUser ? (
           <>
             <NavLink onClick={logoutEvent}>
               <li>LOGOUT</li>
             </NavLink>
             <NavLink to="/mypage">
               <li>MYPAGE</li>
-            </NavLink>
-            <NavLink to="/test">
-              <li>{loginUser.u_nickname}</li>
             </NavLink>
           </>
         ) : (
@@ -68,6 +68,9 @@ const Header = () => {
             </NavLink>
           </>
         )}
+        <NavLink to="/product">
+          <li>SHOP</li>
+        </NavLink>
         <NavLink
           className="cart"
           onMouseOver={cartMouseOver}

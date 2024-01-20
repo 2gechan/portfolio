@@ -1,0 +1,34 @@
+div.product_wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 20px;
+}
+
+div.product_category {
+  width: 200px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+div.product_list {
+  display: flex;
+  flex-direction: column;
+}
+
+button.product_upload {
+  position: fixed;
+  top: 650px;
+  left: 1250px;
+  padding: 16px 40px;
+  font-style: oblique;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  background-color: coral;
+}
+
+button.product_upload:hover {
+  background-color: rgb(244, 170, 118);
+}

@@ -4,6 +4,7 @@ import Header from "./comps/Header";
 import "./css/App.css";
 import "./css/Header.css";
 import "./css/Users.css";
+import "./css/Product.css";
 
 function App() {
   return (

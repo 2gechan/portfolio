@@ -12,7 +12,9 @@ const stateReset = {
 };
 export const UserSlice = createSlice({
   name: "user",
-  initialState: stateReset.user,
+  initialState: {
+    stateReset,
+  },
 
   reducers: {
     login: (state, action) => {
