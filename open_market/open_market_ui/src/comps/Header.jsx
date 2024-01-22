@@ -6,8 +6,9 @@ import { logout } from "../redux/UserSlice";
 const Header = () => {
   const [visible, setVisible] = useState(false);
 
-  const loginUser = useSelector((state) => state.user.user);
+  const loginUser = useSelector((state) => state.user.user) || {};
   const dispatch = useDispatch();
+  const u_id = loginUser.u_id;
 
   // useEffect(() => {
   //   console.log(loginUser);
@@ -49,7 +50,7 @@ const Header = () => {
         <NavLink to="/">
           <li>HOME</li>
         </NavLink>
-        {loginUser ? (
+        {u_id ? (
           <>
             <NavLink onClick={logoutEvent}>
               <li>LOGOUT</li>
