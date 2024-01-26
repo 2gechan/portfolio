@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 const ProductListPage = () => {
   return (
     <div className="product_wrapper">
@@ -17,8 +19,9 @@ const ProductListPage = () => {
           <div>상품5</div>
         </div>
       </div>
-
-      <button className="product_upload">상품 등록</button>
+      <NavLink to="/addItem">
+        <button className="product_upload">상품 등록</button>
+      </NavLink>
     </div>
   );
 };
