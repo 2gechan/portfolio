@@ -4,6 +4,7 @@ import com.gechan.projectshop.models.etc.ImageDto;
 import com.gechan.projectshop.models.product.CategoryVO;
 import com.gechan.projectshop.models.product.ProductDto;
 import com.gechan.projectshop.models.user.UserDto;
+import com.gechan.projectshop.service.FileService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,13 @@ import javax.servlet.http.HttpSession;
 @RestController
 public class ProductController {
 
+    private final FileService fileService;
+
+
+    public ProductController(FileService fileService) {
+        this.fileService = fileService;
+    }
+
     @PostMapping("uploadItem")
     public ProductDto uploadItem(
             @RequestParam("p_category") String p_category,
@@ -29,7 +37,8 @@ public class ProductController {
             HttpSession httpSession
             ) {
         UserDto loginUser = (UserDto) httpSession.getAttribute("LOGINUSER");
-        log.debug("현재 사용자 : {}", loginUser.toString());
+        log.debug("=================상품 등록 시작 =================");
+        log.debug("업로드 사용자 : {}", loginUser.toString());
         ProductDto product = new ProductDto();
         product.setP_name(p_name);
         product.setP_text(p_text);
@@ -41,6 +50,7 @@ public class ProductController {
 
         ImageDto imageDto = new ImageDto();
         log.debug("이미지 이름 : {}", p_main_image.getOriginalFilename());
+
         /*
         try {
             if (!p_main_image.getOriginalFilename().isEmpty()) {
@@ -67,7 +77,7 @@ public class ProductController {
             e.printStackTrace();
         }
         */
-
+        log.debug("=================상품 등록 끝 =================");
         return null;
     }
 }

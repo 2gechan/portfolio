@@ -1,6 +1,19 @@
-import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const ProductListPage = () => {
+  const loginUser = useSelector((state) => state.user.user) || {};
+  const navigate = useNavigate();
+
+  const uploadItemPageMove = () => {
+    if (!loginUser.u_id) {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+    } else {
+      navigate("/addItem");
+    }
+  };
+
   return (
     <div className="product_wrapper">
       <div className="product_category">
@@ -19,9 +32,9 @@ const ProductListPage = () => {
           <div>상품5</div>
         </div>
       </div>
-      <NavLink to="/addItem">
-        <button className="product_upload">상품 등록</button>
-      </NavLink>
+      <button className="product_upload" onClick={uploadItemPageMove}>
+        상품 등록
+      </button>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 const AddProduct = () => {
   const imgRef = useRef(null);
@@ -6,6 +7,8 @@ const AddProduct = () => {
   const [product, setProduct] = useState({});
   const [image, setImage] = useState("");
   const [images, setImages] = useState([]);
+
+  const loginUser = useSelector((state) => state.user.user) || {};
 
   const form_transfer = async () => {
     const formData = new FormData();
