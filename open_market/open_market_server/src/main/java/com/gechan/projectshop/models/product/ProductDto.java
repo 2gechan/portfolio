@@ -1,7 +1,14 @@
 package com.gechan.projectshop.models.product;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "shop_product")
 public class ProductDto {
