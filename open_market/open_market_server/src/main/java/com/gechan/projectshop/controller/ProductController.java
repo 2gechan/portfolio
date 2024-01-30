@@ -38,7 +38,7 @@ public class ProductController {
             ) {
         UserDto loginUser = (UserDto) httpSession.getAttribute("LOGINUSER");
         log.debug("=================상품 등록 시작 =================");
-        log.debug("업로드 사용자 : {}", loginUser.toString());
+        // log.debug("업로드 사용자 : {}", loginUser.toString());
         ProductDto product = new ProductDto();
         product.setP_name(p_name);
         product.setP_text(p_text);
@@ -51,32 +51,15 @@ public class ProductController {
         ImageDto imageDto = new ImageDto();
         log.debug("이미지 이름 : {}", p_main_image.getOriginalFilename());
 
-        /*
         try {
             if (!p_main_image.getOriginalFilename().isEmpty()) {
                 String fileName = fileService.fileUp(p_main_image);
-                returnDto.setP_main_image(fileName);
-                productService.insert(returnDto);
-
+                log.debug("업로드된 파일 이름 : {}", fileName);
             }
-            for (MultipartFile image : images) {
-                if(!image.isEmpty()) {
-                    String fileName = fileService.fileUp(image);
-                    ImageVO imageVO = new ImageVO();
-                    imageVO.setI_image_name(fileName);
-                    long pseq = productService.findLastProduct();
-                    log.debug("마지막 인덱스 {}", pseq);
-                    imageVO.setI_pseq(pseq);
-
-                    imagesService.imagesInsert(imageVO);
-                }
-
-            }
-
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("d");
         }
-        */
+
         log.debug("=================상품 등록 끝 =================");
         return null;
     }

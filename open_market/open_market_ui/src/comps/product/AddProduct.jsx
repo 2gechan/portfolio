@@ -22,10 +22,20 @@ const AddProduct = () => {
       formData.append("images", file);
     }
 
+    const rtnUserChk = await fetch("/sessionChk", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginUser),
+    });
+
+    /*
     const res = await fetch("/uploadItem", {
       method: "POST",
       body: formData,
     });
+    */
     // const data = await res.json();
     // console.log(data);
   };

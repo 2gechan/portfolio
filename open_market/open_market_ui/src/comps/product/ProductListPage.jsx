@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ProductListPage = () => {
   const loginUser = useSelector((state) => state.user.user) || {};

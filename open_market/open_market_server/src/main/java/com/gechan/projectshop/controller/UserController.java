@@ -49,4 +49,16 @@ public class UserController {
         httpSession.removeAttribute("LOGINUSER");
         log.debug("세션 정보 : {}", httpSession.getAttribute("LOGINUSER"));
     }
+
+    @PostMapping("/sessionChk")
+    public UserDto sessionChk (HttpSession httpSession, @RequestBody UserDto userDto) {
+        UserDto curruntUser = (UserDto) httpSession.getAttribute("LOGINUSER");
+        log.debug("클라이언트 유저 정보 : {}", userDto.toString());
+        // log.debug("서버 유저 정보 : {}", curruntUser.toString()); nullPointException
+        if (curruntUser == null && userDto.getU_id() != null) {
+            curruntUser = userDto;
+            httpSession.setAttribute("LOGINUSER", userDto);
+        }
+        return curruntUser;
+    }
 }
