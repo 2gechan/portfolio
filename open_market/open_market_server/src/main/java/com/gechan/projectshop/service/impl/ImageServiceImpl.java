@@ -2,22 +2,57 @@ package com.gechan.projectshop.service.impl;
 
 import com.gechan.projectshop.Repository.ImageRepository;
 import com.gechan.projectshop.models.etc.ImageDto;
+import com.gechan.projectshop.service.FileService;
 import com.gechan.projectshop.service.ImageService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class ImageServiceImpl implements ImageService {
 
     private final ImageRepository imageRepository;
-    public ImageServiceImpl(ImageRepository imageRepository) {
+    private final FileService fileService;
+
+    @Autowired
+    public ImageServiceImpl(ImageRepository imageRepository, FileService fileService) {
         this.imageRepository = imageRepository;
+        this.fileService = fileService;
     }
 
     @Override
-    public ImageDto imageInsert(ImageDto imageDto) {
-        return imageRepository.save(imageDto);
+    public String imageInsert(MultipartFile image, MultipartFile[] images, long p_seq) {
+        String originalFilename = image.getOriginalFilename();
+        log.debug("업로드된 파일 이름 : {}", originalFilename);
+
+        try {
+            if (!(originalFilename.isEmpty() || originalFilename == null || originalFilename.isBlank())) {
+                String fileName = fileService.fileUp(image);
+                ImageDto imageDto = new ImageDto();
+                imageDto.setI_pseq(p_seq);
+                imageDto.setImageTypeCd("m");
+                imageDto.setI_image_name(fileName);
+                imageRepository.save(imageDto);
+            }
+            for (MultipartFile file : images) {
+                if (!file.isEmpty()) {
+                    String fileName = fileService.fileUp(file);
+                    ImageDto imageDto = new ImageDto();
+                    imageDto.setI_pseq(p_seq);
+                    imageDto.setImageTypeCd("s");
+                    imageDto.setI_image_name(fileName);
+                    imageRepository.save(imageDto);
+                }
+            }
+
+        } catch (Exception e) {
+            return "FAIL";
+        }
+        return "SUCCESS";
     }
 
     @Override

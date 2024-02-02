@@ -50,18 +50,14 @@ public class ProductController {
         log.debug("=================상품 등록 시작 =================");
         // log.debug("업로드 사용자 : {}", loginUser.toString());
 
-        // 카테고리 등록
-        CategoryVO category = new CategoryVO();
-        category.setC_name(p_category);
-        log.debug("카테고리 정보 : {}", category.toString());
-
-
         ProductDto product = new ProductDto();
         product.setP_name(p_name); // 상품 이름
         product.setP_uid(u_id); // 판매자
         product.setP_text(p_text); // 상품 설명
         product.setP_price(p_price); // 상품 가격
         String uploadDate;
+
+        // 등록 날짜 생성
         {
             Date date = new Date();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -75,27 +71,9 @@ public class ProductController {
         product.setP_yesNo(true); // 판매 유무
         product.setP_like(0); // 찜 개수
         log.debug("상품 정보 : {}", product.toString());
-        productService.prodUpload(product);
-
+        ProductDto pDto = productService.prodUpload(product, p_category, p_main_image, p_images);
         log.debug("이미지 이름 : {}", p_main_image.getOriginalFilename());
         // 상품 등록하고 seq 값 받아오고
-
-
-        try {
-            if (!p_main_image.getOriginalFilename().isEmpty()) {
-
-                String fileName = fileService.fileUp(p_main_image);
-                // log.debug("업로드된 파일 이름 : {}", fileName);
-                String originalFilename = p_main_image.getOriginalFilename();
-                ImageDto imageDto = new ImageDto();
-                imageDto.setI_image_name(fileName);
-                // imageDto.setI_pseq();
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         log.debug("=================상품 등록 끝 =================");
         return null;
     }
