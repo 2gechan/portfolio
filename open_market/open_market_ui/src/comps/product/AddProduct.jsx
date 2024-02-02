@@ -16,26 +16,28 @@ const AddProduct = () => {
     for (const key in product) {
       formData.append(key, product[key]);
     }
+    formData.append("u_id", loginUser.u_id);
     formData.append("p_main_image", imgRef.current.files[0]);
 
     for (const file of imgsRef.current.files) {
       formData.append("images", file);
     }
 
-    const rtnUserChk = await fetch("/sessionChk", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(loginUser),
-    });
+    // const rtnUserChk = await fetch("/sessionChk", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(loginUser),
+    // });
 
-    /*
     const res = await fetch("/uploadItem", {
       method: "POST",
       body: formData,
     });
-    */
+
+    console.log(res);
+
     // const data = await res.json();
     // console.log(data);
   };
@@ -72,7 +74,7 @@ const AddProduct = () => {
   };
 
   const subImages = images.map((image, index) => (
-    <img key={index} src={image ? image : ""} width="100px" />
+    <img key={index} src={image ? image : ""} width="100px" alt="" />
   ));
 
   return (
@@ -125,7 +127,7 @@ const AddProduct = () => {
           />
         </div>
         <div>
-          <img src={image ? image : ""} width="100px" />
+          <img src={image ? image : ""} width="100px" alt="" />
         </div>
         <div className="add_form_div">
           <label>상세이미지</label>
