@@ -24,14 +24,10 @@ import java.util.Date;
 @RestController
 public class ProductController {
 
-    private final FileService fileService;
-    private final ImageService imageService;
     private final ProductService productService;
 
     @Autowired
-    public ProductController(FileService fileService, ImageService imageService, ProductService productService) {
-        this.fileService = fileService;
-        this.imageService = imageService;
+    public ProductController(ProductService productService) {
         this.productService = productService;
     }
 
@@ -72,7 +68,7 @@ public class ProductController {
         product.setP_like(0); // 찜 개수
         log.debug("상품 정보 : {}", product.toString());
         ProductDto pDto = productService.prodUpload(product, p_category, p_main_image, p_images);
-        log.debug("이미지 이름 : {}", p_main_image.getOriginalFilename());
+        log.debug("서브 이미지 개수 : {}", p_images.length);
         // 상품 등록하고 seq 값 받아오고
         log.debug("=================상품 등록 끝 =================");
         return null;

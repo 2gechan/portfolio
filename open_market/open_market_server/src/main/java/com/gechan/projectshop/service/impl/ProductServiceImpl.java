@@ -4,44 +4,35 @@ import com.gechan.projectshop.Repository.CategoryRepository;
 import com.gechan.projectshop.Repository.ProductRepository;
 import com.gechan.projectshop.models.product.CategoryVO;
 import com.gechan.projectshop.models.product.ProductDto;
+import com.gechan.projectshop.service.CategoryService;
 import com.gechan.projectshop.service.ImageService;
 import com.gechan.projectshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @Service
+@Primary
 public class ProductServiceImpl implements ProductService {
+
     private final ProductRepository productRepository;
-    private final CategoryRepository categoryRepository;
+    private final CategoryService categoryService;
     private final ImageService imageService;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository, CategoryRepository categoryRepository, ImageService imageService) {
+    public ProductServiceImpl(ProductRepository productRepository, CategoryService categoryService, ImageService imageService) {
         this.productRepository = productRepository;
-        this.categoryRepository = categoryRepository;
+        this.categoryService = categoryService;
         this.imageService = imageService;
     }
 
     @Override
     public ProductDto prodUpload(ProductDto dto, String c_name, MultipartFile file, MultipartFile[] files) {
 
-        // imageService.imageInsert()
-
-
-        CategoryVO categoryVO = categoryRepository.findByCName(c_name);
-        long p_cseq;
-        if (categoryVO == null) {
-            categoryVO = new CategoryVO();
-            categoryVO.setC_name(c_name);
-            categoryVO.setC_pcount(0);
-            categoryVO = categoryRepository.save(categoryVO);
-        }
-        p_cseq = categoryVO.getC_seq();
-        categoryVO.setC_pcount(categoryVO.getC_pcount() + 1);
-        categoryRepository.save(categoryVO);
+        long p_cseq = categoryService.findCategory(c_name);
 
         dto.setP_cseq(p_cseq);
         ProductDto pDto = productRepository.save(dto);

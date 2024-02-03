@@ -38,6 +38,8 @@ public class ImageServiceImpl implements ImageService {
                 imageDto.setI_image_name(fileName);
                 imageRepository.save(imageDto);
             }
+            log.debug("서브 이미지 업로드 시작");
+            log.debug("이미지 개수 : {}", images.length);
             for (MultipartFile file : images) {
                 if (!file.isEmpty()) {
                     String fileName = fileService.fileUp(file);
@@ -48,8 +50,9 @@ public class ImageServiceImpl implements ImageService {
                     imageRepository.save(imageDto);
                 }
             }
-
+            log.debug("서브 이미지들 업로드 끝");
         } catch (Exception e) {
+            log.debug("업로드 에러");
             return "FAIL";
         }
         return "SUCCESS";

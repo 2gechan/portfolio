@@ -32,7 +32,7 @@ public class ProductDto {
     @Column(nullable = false)
     private int p_price; // 상품 가격
 
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 20)
     private String p_update; // 등록일자
 
     @Column(nullable = false)

@@ -20,7 +20,7 @@ const AddProduct = () => {
     formData.append("p_main_image", imgRef.current.files[0]);
 
     for (const file of imgsRef.current.files) {
-      formData.append("images", file);
+      formData.append("p_images", file);
     }
 
     // const rtnUserChk = await fetch("/sessionChk", {
