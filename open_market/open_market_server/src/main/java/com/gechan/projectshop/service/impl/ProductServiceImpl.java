@@ -46,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDto> prodListSelect() {
-        return null;
+        return productRepository.findAll();
     }
 
     @Override

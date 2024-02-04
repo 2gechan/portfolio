@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const ProductListPage = () => {
+  const [list, setList] = useState([]);
   const loginUser = useSelector((state) => state.user.user) || {};
   const navigate = useNavigate();
 
@@ -14,6 +16,27 @@ const ProductListPage = () => {
     }
   };
 
+  useEffect(() => {
+    const initProdList = async () => {
+      const res = await fetch("/prodList");
+      const data = await res.json();
+      setList([...data]);
+    };
+    initProdList();
+  }, []);
+
+  const productList = list.map((item) => {
+    const imagePath = `http://localhost:8080/static/${item.p_main_image}`;
+    const detailLink = `/product/${item.p_seq}`;
+    return (
+      <div key={item.p_seq} className="p_Info">
+        <img src={imagePath} alt="상품" width="100px" height="100px" />
+        <span>{item.p_name}</span>
+        <span>{item.p_pridce}</span>
+      </div>
+    );
+  });
+
   return (
     <div className="product_wrapper">
       <div className="product_category">
@@ -24,13 +47,7 @@ const ProductListPage = () => {
       </div>
       <div className="product_main">
         <h1>All</h1>
-        <div className="product_list">
-          <div>상품1</div>
-          <div>상품2</div>
-          <div>상품3</div>
-          <div>상품4</div>
-          <div>상품5</div>
-        </div>
+        <div className="product_list">{productList}</div>
       </div>
       <button className="product_upload" onClick={uploadItemPageMove}>
         상품 등록
