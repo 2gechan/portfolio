@@ -71,8 +71,19 @@ public class ProductController {
         return null;
     }
 
+    // =============================== 상품 메인 페이지 오픈 ===============================
+
+    @GetMapping("/ctgyList")
+    public List<CategoryVO> categoryList () {
+
+        return productService.loadAllCategory();
+    }
+
     @GetMapping("/prodList")
     public List<ProductDto> productLList() {
         return productService.prodListSelect();
     }
+
+
+    // =============================== 상품 메인 페이지 오픈 ===============================
 }

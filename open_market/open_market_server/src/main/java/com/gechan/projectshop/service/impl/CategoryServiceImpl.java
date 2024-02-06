@@ -6,6 +6,8 @@ import com.gechan.projectshop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
@@ -29,5 +31,10 @@ public class CategoryServiceImpl implements CategoryService {
         categoryVO.setC_pcount(categoryVO.getC_pcount() + 1);
         categoryRepository.save(categoryVO);
         return p_cseq;
+    }
+
+    @Override
+    public List<CategoryVO> loadAllCategory() {
+        return categoryRepository.findAll();
     }
 }

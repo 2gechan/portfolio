@@ -1,5 +1,6 @@
 package com.gechan.projectshop.service;
 
+import com.gechan.projectshop.models.product.CategoryVO;
 import com.gechan.projectshop.models.product.ProductDto;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,4 +13,6 @@ public interface ProductService {
     public String prodDelete(long p_seq); // 상품 삭제
 
     public String prodSoldOut(String yesOrNo);
+
+    public List<CategoryVO> loadAllCategory();
 }

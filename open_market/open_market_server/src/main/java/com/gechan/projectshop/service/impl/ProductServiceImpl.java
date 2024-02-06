@@ -58,4 +58,9 @@ public class ProductServiceImpl implements ProductService {
     public String prodSoldOut(String yesOrNo) {
         return null;
     }
+
+    @Override
+    public List<CategoryVO> loadAllCategory() {
+        return categoryService.loadAllCategory();
+    }
 }
