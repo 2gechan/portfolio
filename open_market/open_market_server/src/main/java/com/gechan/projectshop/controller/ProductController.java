@@ -29,6 +29,7 @@ public class ProductController {
         this.productService = productService;
     }
 
+    // 상품 업로드
     @PostMapping("uploadItem")
     public ProductDto uploadItem(
             @RequestParam("p_category") String p_category,
@@ -66,9 +67,9 @@ public class ProductController {
         product.setP_like(0); // 찜 개수
         log.debug("상품 정보 : {}", product.toString());
         ProductDto pDto = productService.prodUpload(product, p_category, p_main_image, p_images);
-        // 상품 등록하고 seq 값 받아오고
+
         log.debug("=================상품 등록 끝 =================");
-        return null;
+        return pDto;
     }
 
     // =============================== 상품 메인 페이지 오픈 ===============================
@@ -86,4 +87,14 @@ public class ProductController {
 
 
     // =============================== 상품 메인 페이지 오픈 ===============================
+
+    // =============================== 상품 데티엘 페이지 오픈 ===============================
+
+    @GetMapping
+    public void prodDetailPage(@RequestParam("p_seq") String p_seq) {
+        long seq = Integer.parseInt(p_seq);
+
+    }
+
+    // =============================== 상품 데팅ㄹ 페이지 오픈 ===============================
 }

@@ -39,8 +39,12 @@ public class ProductServiceImpl implements ProductService {
 
         String result = imageService.imageInsert(file, files, pDto.getP_seq());
         if (result.equals("FAIL")) {
-            return null;
+            return null; // 업로드에 실패했다고 알려줘야 함
         }
+        pDto.setP_main_image_name(result);
+        // save는 insert와 다르게 기존에 같은 데이터가 있으면 변경사항만 업데이트? 해준다
+        pDto = productRepository.save(pDto);
+
         return pDto;
     }
 

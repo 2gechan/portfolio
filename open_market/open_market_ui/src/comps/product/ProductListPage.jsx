@@ -36,18 +36,18 @@ const ProductListPage = () => {
     // 이미지 파일 따로 불러와야할듯
     // 아니면 메인 이미지 이름만 상품정보에 넣어놓고
     // 디테일 페이지로 넘어갔을시 이미지 db에서 상품 seq를 통해서 다 불러올까?
-    const imagePath = `http://localhost:8080/static/${item.p_main_image}`;
+    const imagePath = `http://localhost:8080/static/${item.p_main_image_name}`;
     const detailLink = `/product/${item.p_seq}`;
     return (
-      // datailLink 에 대해서 생각좀 더 해봐야함
-      <NavLink to={detailLink}>
-        <div key={item.p_seq} className="p_Info">
-          {/* <img src={imagePath} alt="상품" width="100px" height="100px" /> */}
+      <div key={item.p_seq} className="p_Info">
+        <NavLink to={detailLink} key={item.p_seq}>
+          <img src={imagePath} alt="상품" width="100px" height="100px" />
           <span>상품 이름 : {item.p_name}</span>
           <span> 가격 : {item.p_price}</span>
-        </div>
-      </NavLink>
+        </NavLink>
+      </div>
     );
+    // datailLink 에 대해서 생각좀 더 해봐야함
   });
 
   const categoryList = ctgy.map((item) => {
@@ -66,8 +66,9 @@ const ProductListPage = () => {
         {categoryList}
       </div>
       <div className="product_main">
-        <h1>All</h1>
-        <div className="product_list">{productList}</div>
+        <div className="product_list" key="">
+          {productList}
+        </div>
       </div>
       <button className="product_upload" onClick={uploadItemPageMove}>
         상품 등록

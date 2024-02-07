@@ -39,4 +39,6 @@ public class ProductDto {
     private boolean p_yesNo; // 판매 유무
 
     private int p_like; // 찜 개수
+
+    private String p_main_image_name;
 }

@@ -28,10 +28,12 @@ public class ImageServiceImpl implements ImageService {
     public String imageInsert(MultipartFile image, MultipartFile[] images, long p_seq) {
         String originalFilename = image.getOriginalFilename();
         log.debug("업로드된 파일 이름 : {}", originalFilename);
+        String p_main_image_name = "FAIL";
 
         try {
             if (!(originalFilename.isEmpty() || originalFilename == null || originalFilename.isBlank())) {
                 String fileName = fileService.fileUp(image);
+                p_main_image_name = fileName;
                 ImageDto imageDto = new ImageDto();
                 imageDto.setI_pseq(p_seq);
                 imageDto.setImageTypeCd("m");
@@ -55,7 +57,9 @@ public class ImageServiceImpl implements ImageService {
             log.debug("업로드 에러");
             return "FAIL";
         }
-        return "SUCCESS";
+        if (p_main_image_name.equals("FAIL")) return p_main_image_name;
+        else return p_main_image_name;
+
     }
 
     @Override
