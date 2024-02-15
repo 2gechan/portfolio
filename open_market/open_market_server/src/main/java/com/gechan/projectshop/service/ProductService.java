@@ -15,4 +15,6 @@ public interface ProductService {
     public String prodSoldOut(String yesOrNo);
 
     public List<CategoryVO> loadAllCategory();
+
+    public ProductDto prodDetail(long p_seq);
 }

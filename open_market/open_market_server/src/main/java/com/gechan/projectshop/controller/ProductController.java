@@ -72,7 +72,7 @@ public class ProductController {
         return pDto;
     }
 
-    // =============================== 상품 메인 페이지 오픈 ===============================
+    // =============================== 상품 메인 페이지 ===============================
 
     @GetMapping("/ctgyList")
     public List<CategoryVO> categoryList () {
@@ -86,15 +86,23 @@ public class ProductController {
     }
 
 
-    // =============================== 상품 메인 페이지 오픈 ===============================
+    // =============================== 상품 메인 페이지 ===============================
 
-    // =============================== 상품 데티엘 페이지 오픈 ===============================
+    // =============================== 상품 디테일 페이지 ===============================
 
-    @GetMapping
+    @GetMapping("/product/detail")
     public void prodDetailPage(@RequestParam("p_seq") String p_seq) {
         long seq = Integer.parseInt(p_seq);
-
+        log.debug("상품 번호 : {}", seq);
+        ProductDto pInfo = productService.prodDetail(seq);
+        log.debug("상품 정보 : {}", pInfo.toString());
     }
 
-    // =============================== 상품 데팅ㄹ 페이지 오픈 ===============================
+    @GetMapping("/product/detailImage")
+    public void subImageRetv(@RequestParam("p_seq") String p_seq) {
+        long seq = Integer.parseInt(p_seq);
+        log.debug("디테일 이미지 상품 번호 : {}", seq);
+    }
+
+    // =============================== 상품 디테일 페이지 ===============================
 }

@@ -67,4 +67,11 @@ public class ProductServiceImpl implements ProductService {
     public List<CategoryVO> loadAllCategory() {
         return categoryService.loadAllCategory();
     }
+
+    @Override
+    public ProductDto prodDetail(long p_seq) {
+
+        ProductDto prodInfo = productRepository.findById(p_seq).orElse(null);
+        return prodInfo;
+    }
 }

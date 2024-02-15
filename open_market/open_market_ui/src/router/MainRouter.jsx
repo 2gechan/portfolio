@@ -6,6 +6,7 @@ import UserLogin from "../comps/users/UserLogin";
 import MyPage from "../comps/users/MyPage";
 import ProductListPage from "../comps/product/ProductListPage";
 import AddProduct from "../comps/product/AddProduct";
+import ProductDetail from "../comps/product/ProductDetail";
 
 const MainRouter = () => {
   const router = createBrowserRouter([
@@ -19,6 +20,7 @@ const MainRouter = () => {
         { path: "/mypage", element: <MyPage /> },
         { path: "/product", element: <ProductListPage /> },
         { path: "/addItem", element: <AddProduct /> },
+        { path: `/product/:p_seq`, element: <ProductDetail /> },
       ],
     },
   ]);
