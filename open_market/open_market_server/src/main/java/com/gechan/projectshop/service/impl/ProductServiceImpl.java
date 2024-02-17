@@ -2,6 +2,7 @@ package com.gechan.projectshop.service.impl;
 
 import com.gechan.projectshop.Repository.CategoryRepository;
 import com.gechan.projectshop.Repository.ProductRepository;
+import com.gechan.projectshop.models.etc.ImageDto;
 import com.gechan.projectshop.models.product.CategoryVO;
 import com.gechan.projectshop.models.product.ProductDto;
 import com.gechan.projectshop.service.CategoryService;
@@ -70,8 +71,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto prodDetail(long p_seq) {
-
         ProductDto prodInfo = productRepository.findById(p_seq).orElse(null);
         return prodInfo;
+    }
+
+    @Override
+    public List<ImageDto> detailImages(long p_seq) {
+        return imageService.detailImage(p_seq);
     }
 }

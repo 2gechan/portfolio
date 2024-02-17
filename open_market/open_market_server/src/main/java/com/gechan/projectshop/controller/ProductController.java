@@ -4,8 +4,6 @@ import com.gechan.projectshop.models.etc.ImageDto;
 import com.gechan.projectshop.models.product.CategoryVO;
 import com.gechan.projectshop.models.product.ProductDto;
 import com.gechan.projectshop.models.user.UserDto;
-import com.gechan.projectshop.service.FileService;
-import com.gechan.projectshop.service.ImageService;
 import com.gechan.projectshop.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,17 +89,19 @@ public class ProductController {
     // =============================== 상품 디테일 페이지 ===============================
 
     @GetMapping("/product/detail")
-    public void prodDetailPage(@RequestParam("p_seq") String p_seq) {
+    public ProductDto prodDetailPage(@RequestParam("p_seq") String p_seq) {
         long seq = Integer.parseInt(p_seq);
         log.debug("상품 번호 : {}", seq);
         ProductDto pInfo = productService.prodDetail(seq);
         log.debug("상품 정보 : {}", pInfo.toString());
+        return pInfo;
     }
 
     @GetMapping("/product/detailImage")
-    public void subImageRetv(@RequestParam("p_seq") String p_seq) {
+    public List<ImageDto> subImageRetv(@RequestParam("p_seq") String p_seq) {
         long seq = Integer.parseInt(p_seq);
         log.debug("디테일 이미지 상품 번호 : {}", seq);
+        return productService.detailImages(seq);
     }
 
     // =============================== 상품 디테일 페이지 ===============================

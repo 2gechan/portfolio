@@ -1,5 +1,6 @@
 package com.gechan.projectshop.service;
 
+import com.gechan.projectshop.models.etc.ImageDto;
 import com.gechan.projectshop.models.product.CategoryVO;
 import com.gechan.projectshop.models.product.ProductDto;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,4 +18,6 @@ public interface ProductService {
     public List<CategoryVO> loadAllCategory();
 
     public ProductDto prodDetail(long p_seq);
+
+    public List<ImageDto> detailImages(long p_seq);
 }
