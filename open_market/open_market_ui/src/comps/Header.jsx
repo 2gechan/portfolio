@@ -69,7 +69,7 @@ const Header = () => {
             </NavLink>
           </>
         )}
-        <NavLink to="/product">
+        <NavLink to="/product/0">
           <li>SHOP</li>
         </NavLink>
         <NavLink

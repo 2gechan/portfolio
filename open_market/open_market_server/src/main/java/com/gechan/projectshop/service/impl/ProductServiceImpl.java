@@ -50,8 +50,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDto> prodListSelect() {
-        return productRepository.findAll();
+    public List<ProductDto> prodListSelect(long c_seq) {
+        if (c_seq < 1) return productRepository.findAll(); // 전체
+        else return productRepository.prodInCategory(c_seq); // 카테고리별
     }
 
     @Override

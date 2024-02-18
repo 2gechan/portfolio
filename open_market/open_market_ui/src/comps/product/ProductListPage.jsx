@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 
 const ProductListPage = () => {
+  const { c_seq } = useParams();
   const [list, setList] = useState([]);
   const [ctgy, setCtgy] = useState([]);
   const loginUser = useSelector((state) => state.user.user) || {};
@@ -16,7 +17,6 @@ const ProductListPage = () => {
       navigate("/addItem");
     }
   };
-
   useEffect(() => {
     const initCtgyList = async () => {
       const res = await fetch("/ctgyList");
@@ -25,22 +25,22 @@ const ProductListPage = () => {
     };
     initCtgyList();
     const initProdList = async () => {
-      const res = await fetch("/prodList");
+      const res = await fetch(`/prodList?c_seq=${c_seq}`);
       const data = await res.json();
       setList([...data]);
     };
     initProdList();
-  }, []);
+  }, [c_seq]); // 카테고리 바뀔때마다 갱신
 
   const productList = list.map((item) => {
     // 이미지 파일 따로 불러와야할듯
     // 아니면 메인 이미지 이름만 상품정보에 넣어놓고
     // 디테일 페이지로 넘어갔을시 이미지 db에서 상품 seq를 통해서 다 불러올까?
     const imagePath = `http://localhost:8080/static/${item.p_main_image_name}`;
-    const detailLink = `/product/${item.p_seq}`;
+    const detailLink = `/product/item/${item.p_seq}`;
     return (
       <div key={item.p_seq} className="p_Info">
-        <NavLink to={detailLink} key={item.p_seq}>
+        <NavLink to={detailLink}>
           <img src={imagePath} alt="상품" width="100px" height="100px" />
           <span>상품 이름 : {item.p_name}</span>
           <span> 가격 : {item.p_price}</span>
@@ -51,10 +51,13 @@ const ProductListPage = () => {
   });
 
   const categoryList = ctgy.map((item) => {
+    const link = `/product/${item.c_seq}`;
     return (
       <div key={item.c_seq} className="c_div">
-        <strong className="c_name">{item.c_name}</strong>
-        <span className="c_count"> 상품 개수 : {item.c_pcount}</span>
+        <NavLink to={link}>
+          <strong className="c_name">{item.c_name}</strong>
+          <span className="c_count"> 상품 개수 : {item.c_pcount}</span>
+        </NavLink>
       </div>
     );
   });

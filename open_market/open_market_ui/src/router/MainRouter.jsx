@@ -18,9 +18,9 @@ const MainRouter = () => {
         { path: "/join", element: <UserJoin /> },
         { path: "login", element: <UserLogin /> },
         { path: "/mypage", element: <MyPage /> },
-        { path: "/product", element: <ProductListPage /> },
+        { path: "/product/:c_seq", element: <ProductListPage /> },
         { path: "/addItem", element: <AddProduct /> },
-        { path: `/product/:p_seq`, element: <ProductDetail /> },
+        { path: `/product/item/:p_seq`, element: <ProductDetail /> },
       ],
     },
   ]);

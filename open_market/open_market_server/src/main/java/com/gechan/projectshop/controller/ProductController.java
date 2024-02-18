@@ -79,8 +79,9 @@ public class ProductController {
     }
 
     @GetMapping("/prodList")
-    public List<ProductDto> productLList() {
-        return productService.prodListSelect();
+    public List<ProductDto> productLList(@RequestParam("c_seq") String c_seq) {
+        long seq = Integer.parseInt(c_seq);
+        return productService.prodListSelect(seq);
     }
 
 
@@ -88,7 +89,7 @@ public class ProductController {
 
     // =============================== 상품 디테일 페이지 ===============================
 
-    @GetMapping("/product/detail")
+    @GetMapping("/product/item/detail")
     public ProductDto prodDetailPage(@RequestParam("p_seq") String p_seq) {
         long seq = Integer.parseInt(p_seq);
         log.debug("상품 번호 : {}", seq);
@@ -97,7 +98,7 @@ public class ProductController {
         return pInfo;
     }
 
-    @GetMapping("/product/detailImage")
+    @GetMapping("/product/item/detailImage")
     public List<ImageDto> subImageRetv(@RequestParam("p_seq") String p_seq) {
         long seq = Integer.parseInt(p_seq);
         log.debug("디테일 이미지 상품 번호 : {}", seq);

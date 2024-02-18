@@ -30,6 +30,8 @@ public class CategoryServiceImpl implements CategoryService {
         p_cseq = categoryVO.getC_seq();
         categoryVO.setC_pcount(categoryVO.getC_pcount() + 1);
         categoryRepository.save(categoryVO);
+        this.findCategory("전체"); // 전체도 개수 하나 추가해주기
+
         return p_cseq;
     }
 
