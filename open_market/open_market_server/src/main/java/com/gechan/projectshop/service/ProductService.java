@@ -20,4 +20,6 @@ public interface ProductService {
     public ProductDto prodDetail(long p_seq);
 
     public List<ImageDto> detailImages(long p_seq);
+
+    public int likeCountPlus(long p_seq);
 }

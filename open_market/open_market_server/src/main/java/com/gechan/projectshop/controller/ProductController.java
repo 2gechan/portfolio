@@ -92,7 +92,6 @@ public class ProductController {
     @GetMapping("/product/item/detail")
     public ProductDto prodDetailPage(@RequestParam("p_seq") String p_seq) {
         long seq = Integer.parseInt(p_seq);
-        log.debug("상품 번호 : {}", seq);
         ProductDto pInfo = productService.prodDetail(seq);
         log.debug("상품 정보 : {}", pInfo.toString());
         return pInfo;
@@ -101,8 +100,15 @@ public class ProductController {
     @GetMapping("/product/item/detailImage")
     public List<ImageDto> subImageRetv(@RequestParam("p_seq") String p_seq) {
         long seq = Integer.parseInt(p_seq);
-        log.debug("디테일 이미지 상품 번호 : {}", seq);
         return productService.detailImages(seq);
+    }
+
+    @GetMapping("/product/item/likeCount")
+    public int likeCountPlus(@RequestParam("p_seq") String p_seq) {
+        long prodSeq = Integer.parseInt(p_seq);
+        log.debug("상품 시퀀스 : {}", prodSeq);
+        return productService.likeCountPlus(prodSeq);
+
     }
 
     // =============================== 상품 디테일 페이지 ===============================

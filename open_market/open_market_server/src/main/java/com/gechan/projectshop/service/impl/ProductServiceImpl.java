@@ -80,4 +80,17 @@ public class ProductServiceImpl implements ProductService {
     public List<ImageDto> detailImages(long p_seq) {
         return imageService.detailImage(p_seq);
     }
+
+    @Override
+    public int likeCountPlus(long p_seq) {
+        ProductDto prod = productRepository.findById(p_seq).orElse(null);
+        int like = 0;
+        if (prod != null){
+            like = prod.getP_like();
+            like += 1;
+            prod.setP_like(like);
+            productRepository.save(prod);
+        }
+        return like;
+    }
 }

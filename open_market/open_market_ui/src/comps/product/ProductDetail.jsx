@@ -24,6 +24,7 @@ const ProductDetail = () => {
       // console.log(data);
       setImages([...data]);
     };
+
     p_infoRetv();
     subImagesListRetv();
   }, []);
@@ -36,9 +37,12 @@ const ProductDetail = () => {
     );
   });
 
-  const likeBtnClick = () => {
-    setPInfo({ ...pInfo, [pInfo.p_like]: pInfo.p_like + 1 });
-    console.log(pInfo.p_like + 1);
+  const likeBtnClick = async () => {
+    const res = await fetch(`likeCount?p_seq=${p_seq}`, {
+      method: "GET",
+    });
+    const data = await res.json();
+    console.log(data);
   };
 
   return (
