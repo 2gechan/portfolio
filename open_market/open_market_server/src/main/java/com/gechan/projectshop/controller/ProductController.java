@@ -106,7 +106,7 @@ public class ProductController {
     @GetMapping("/product/item/likeCount")
     public int likeCountPlus(@RequestParam("p_seq") String p_seq) {
         long prodSeq = Integer.parseInt(p_seq);
-        log.debug("상품 시퀀스 : {}", prodSeq);
+        // log.debug("상품 시퀀스 : {}", prodSeq);
         return productService.likeCountPlus(prodSeq);
 
     }

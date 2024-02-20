@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const ProductDetail = () => {
   const { p_seq } = useParams();
@@ -13,7 +13,6 @@ const ProductDetail = () => {
         method: "GET",
       });
       const data = await res.json();
-      // console.log(data);
       setPInfo(data);
     };
     const subImagesListRetv = async () => {
@@ -21,7 +20,6 @@ const ProductDetail = () => {
         method: "GET",
       });
       const data = await res.json();
-      // console.log(data);
       setImages([...data]);
     };
 
@@ -31,7 +29,6 @@ const ProductDetail = () => {
 
   const subImageList = images.map((item) => {
     const imagePath = `http://localhost:8080/static/${item.i_image_name}`;
-    console.log(item.i_image_name);
     return (
       <img src={imagePath} alt="서브이미지" width="100px" height="100px"></img>
     );
@@ -42,37 +39,39 @@ const ProductDetail = () => {
       method: "GET",
     });
     const data = await res.json();
-    console.log(data);
+    setPInfo({ ...pInfo, p_like: data });
   };
 
   return (
     <>
-      <div className="product_detail_top">
-        <div>
-          <img src={imagePath} alt="메인이미지" width="400px" height="400px" />
+      <div className="prod_detail_top">
+        <div className="prod_main_image">
+          <img src={imagePath} alt="메인이미지" width="600px" height="400px" />
         </div>
-        <div>
-          <label>상품명 : </label>
-          <span>{pInfo.p_name}</span>
-        </div>
-        <div>
-          <label>상품가격 : </label>
-          <span>{pInfo.p_price}</span>
-        </div>
-        <div>
-          <label>상품설명 : </label>
-          <span>{pInfo.p_text}</span>
-        </div>
-        <div>
-          <label>찜개수 : </label>
-          <span>{pInfo.p_like}</span>
-        </div>
-        <div>
-          <button>구매하기</button>
-          <button onClick={likeBtnClick} type="none">
-            찜하기
-          </button>
-          <button>장바구니 담기</button>
+        <div className="prod_desc">
+          <div>
+            <label>상품명 : </label>
+            <span>{pInfo.p_name}</span>
+          </div>
+          <div>
+            <label>상품가격 : </label>
+            <span>{pInfo.p_price}</span>
+          </div>
+          <div>
+            <label>상품설명 : </label>
+            <span>{pInfo.p_text}</span>
+          </div>
+          <div>
+            <label>찜개수 : </label>
+            <span>{pInfo.p_like}</span>
+          </div>
+          <div className="prod_detail_btn_div">
+            <button className="buy_btn">구매하기</button>
+            <button onClick={likeBtnClick} type="none" className="like_btn">
+              &#x1f49b;
+            </button>
+            <button className="inToCart_btn">장바구니 담기</button>
+          </div>
         </div>
       </div>
       <div className="product_detail_bottom">

@@ -32,3 +32,36 @@ button.product_upload {
 button.product_upload:hover {
   background-color: rgb(244, 170, 118);
 }
+
+div.prod_detail_top {
+  display: flex;
+  justify-content: space-around;
+
+  padding: 20px;
+}
+
+div.prod_desc {
+  width: 300px;
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+div.prod_desc div {
+  margin-bottom: 20px;
+}
+
+div.prod_detail_btn_div {
+  margin-top: 10px;
+  display: flex;
+}
+
+div.prod_detail_btn_div button {
+  margin-right: 10px;
+}
+
+button.like_btn {
+  background-color: white;
+  font-size: large;
+  border: none;
+}
