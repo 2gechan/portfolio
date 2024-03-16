@@ -1,18 +1,17 @@
-import { useEffect, useState } from "react";
+import { Map, MapMarker } from "react-kakao-maps-sdk";
 const ShopMain = () => {
-  const [message, setMessage] = useState(null);
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch("/main", {
-        method: "GET",
-      });
-      const result = await res.text();
-      console.log(result);
-      setMessage(result);
-    };
-    fetchData();
-  }, []);
-  return <h1>{message}</h1>;
+  return (
+    <div className="map">
+      <Map
+        center={{ lat: 35.155833, lng: 126.816667 }}
+        style={{ width: "700px", height: "600px" }}
+      >
+        <MapMarker position={{ lat: 35.155833, lng: 126.816667 }}>
+          <div style={{ color: "#000" }}>푸른나라꽃나라</div>
+        </MapMarker>
+      </Map>
+    </div>
+  );
 };
 
 export default ShopMain;

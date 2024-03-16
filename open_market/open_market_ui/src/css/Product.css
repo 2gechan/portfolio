@@ -35,7 +35,7 @@ button.product_upload:hover {
 
 div.prod_detail_top {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 
   padding: 20px;
 }
@@ -45,6 +45,8 @@ div.prod_desc {
   margin-left: 50px;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  /* background-color: gray; */
 }
 
 div.prod_desc div {
@@ -64,4 +66,14 @@ button.like_btn {
   background-color: white;
   font-size: large;
   border: none;
+}
+
+div.prod_subIamge {
+  margin-left: 242px;
+  display: flex;
+}
+
+div.prod_subImage img {
+  width: 200px;
+  height: 200px;
 }

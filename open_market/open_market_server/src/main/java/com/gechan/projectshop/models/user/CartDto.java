@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class CartDto {
-    private long ca_uId; // 유저아이디
+    private String ca_uId; // 유저아이디
     private long ca_pseq; // 상품번호
 
 }
