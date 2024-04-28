@@ -1,18 +1,20 @@
 package com.gechan.projectshop.service.impl;
 
+import com.gechan.projectshop.Repository.CartRepository;
 import com.gechan.projectshop.Repository.CategoryRepository;
 import com.gechan.projectshop.Repository.ProductRepository;
 import com.gechan.projectshop.models.etc.ImageDto;
 import com.gechan.projectshop.models.product.CategoryVO;
 import com.gechan.projectshop.models.product.ProductDto;
-import com.gechan.projectshop.service.CategoryService;
-import com.gechan.projectshop.service.ImageService;
-import com.gechan.projectshop.service.ProductService;
+import com.gechan.projectshop.models.user.CartDto;
+import com.gechan.projectshop.models.user.CartOutDTO;
+import com.gechan.projectshop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,7 +26,10 @@ public class ProductServiceImpl implements ProductService {
     private final ImageService imageService;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository, CategoryService categoryService, ImageService imageService) {
+    public ProductServiceImpl(ProductRepository productRepository
+            , CategoryService categoryService
+            , ImageService imageService
+            ) {
         this.productRepository = productRepository;
         this.categoryService = categoryService;
         this.imageService = imageService;
@@ -92,5 +97,10 @@ public class ProductServiceImpl implements ProductService {
             productRepository.save(prod);
         }
         return like;
+    }
+
+    @Override
+    public ProductDto findById(long p_seq) {
+        return productRepository.findById(p_seq).orElse(null);
     }
 }

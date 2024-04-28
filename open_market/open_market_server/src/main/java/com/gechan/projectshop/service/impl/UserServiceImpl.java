@@ -36,4 +36,9 @@ public class UserServiceImpl implements UserService {
         UserDto user = userRepository.save(joinUser);
         return user;
     }
+
+    @Override
+    public UserDto findById(String u_id) {
+        return userRepository.findById(u_id).orElse(null);
+    }
 }

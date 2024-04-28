@@ -3,6 +3,8 @@ package com.gechan.projectshop.service;
 import com.gechan.projectshop.models.etc.ImageDto;
 import com.gechan.projectshop.models.product.CategoryVO;
 import com.gechan.projectshop.models.product.ProductDto;
+import com.gechan.projectshop.models.user.CartDto;
+import com.gechan.projectshop.models.user.CartOutDTO;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -22,4 +24,7 @@ public interface ProductService {
     public List<ImageDto> detailImages(long p_seq);
 
     public int likeCountPlus(long p_seq);
+
+    public ProductDto findById(long p_seq);
+
 }

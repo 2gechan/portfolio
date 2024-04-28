@@ -7,6 +7,7 @@ const Header = () => {
   const [visible, setVisible] = useState(false);
 
   const loginUser = useSelector((state) => state.user.user) || {};
+  // const cartList = useSelector((state) => state.cart.cart) || {};
   const dispatch = useDispatch();
   const u_id = loginUser.u_id;
 
@@ -53,7 +54,7 @@ const Header = () => {
         {u_id ? (
           <>
             <NavLink onClick={logoutEvent}>
-              <li>LOGOUT</li>
+              <li>{loginUser.u_id}</li>
             </NavLink>
             <NavLink to="/mypage">
               <li>MYPAGE</li>

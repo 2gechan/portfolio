@@ -3,7 +3,6 @@ package com.gechan.projectshop.controller;
 import com.gechan.projectshop.models.etc.ImageDto;
 import com.gechan.projectshop.models.product.CategoryVO;
 import com.gechan.projectshop.models.product.ProductDto;
-import com.gechan.projectshop.models.user.CartDto;
 import com.gechan.projectshop.models.user.UserDto;
 import com.gechan.projectshop.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -110,15 +109,6 @@ public class ProductController {
         // log.debug("상품 시퀀스 : {}", prodSeq);
         return productService.likeCountPlus(prodSeq);
     }
-
-    public CartDto cartIn(@RequestParam("p_seq") String p_seq, @RequestParam("u_id") String u_id) {
-        CartDto cart = new CartDto();
-        long seq = Integer.parseInt(p_seq);
-        cart.setCa_pseq(seq);
-        cart.setCa_uId(u_id);
-        return cart;
-    }
-
 
     // =============================== 상품 디테일 페이지 ===============================
 }

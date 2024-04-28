@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/UserSlice";
+import { loginUserCart } from "../../redux/CartSlice";
 
 const UserLogin = () => {
   const [loginUser, setLoginUser] = useState({});
@@ -11,7 +12,6 @@ const UserLogin = () => {
   const loginInputChangeHandler = (e) => {
     const { name, value } = e.target;
     setLoginUser({ ...loginUser, [name]: value });
-    console.log(name, value);
   };
 
   const loginBtnClickHandler = async () => {
@@ -28,6 +28,16 @@ const UserLogin = () => {
           const data = await res.json();
           console.log(data);
           dispatch(login(data));
+          const cartRes = await fetch("/cartLoad", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(loginUser.u_id),
+          });
+          const cartData = await cartRes.json();
+          console.log(cartData);
+          dispatch(loginUserCart(cartData));
           navigate("/");
         }
       } catch (error) {

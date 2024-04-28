@@ -50,12 +50,12 @@ const ProductDetail = () => {
   };
 
   const cartIn = async () => {
+    const res = await fetch(`cartIn?p_seq=${p_seq}&u_id=${loginUser.u_id}`, {
+      method: "GET",
+    });
     if (loginUser.u_id) {
       // 로그인 했을경우 db에 장바구니정보 담기
-      const res = await fetch(`cartIn?p_seq-${p_seq}&id=${loginUser.u_id}`, {
-        method: "GET",
-      });
-      const data = await res.json();
+      // const data = await res.json();
     } else {
       // 로그인 안했을때 스토어에 담기
     }
@@ -89,7 +89,9 @@ const ProductDetail = () => {
             <button onClick={likeBtnClick} type="none" className="like_btn">
               &#x1f49b;
             </button>
-            <button className="inToCart_btn">장바구니 담기</button>
+            <button className="inToCart_btn" onClick={cartIn}>
+              장바구니 담기
+            </button>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ package com.gechan.projectshop.models.user;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "shop_user")
 @Entity

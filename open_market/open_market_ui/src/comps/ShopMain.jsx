@@ -7,7 +7,7 @@ const ShopMain = () => {
         style={{ width: "700px", height: "600px" }}
       >
         <MapMarker position={{ lat: 35.155833, lng: 126.816667 }}>
-          <div style={{ color: "#000" }}>푸른나라꽃나라</div>
+          {/* <div style={{ color: "#000" }}>푸른나라꽃나라</div> */}
         </MapMarker>
       </Map>
     </div>
