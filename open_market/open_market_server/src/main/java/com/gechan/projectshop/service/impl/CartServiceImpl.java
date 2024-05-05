@@ -39,7 +39,7 @@ public class CartServiceImpl implements CartService {
             cartRepository.save(cart);
         }
 
-        return loadCartProd(u_id);
+        return this.loadCartProd(u_id);
     }
 
     @Override

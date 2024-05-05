@@ -54,8 +54,8 @@ const ProductDetail = () => {
       method: "GET",
     });
     if (loginUser.u_id) {
-      // 로그인 했을경우 db에 장바구니정보 담기
-      // const data = await res.json();
+      const data = await res.json();
+      console.log(data);
     } else {
       // 로그인 안했을때 스토어에 담기
     }
