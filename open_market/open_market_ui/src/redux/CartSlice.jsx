@@ -10,15 +10,14 @@ const stateReset = {
 
 export const CartSlice = createSlice({
   name: "cart",
-  initialState: {
-    stateReset,
-  },
-
+  // stateReset,
+  initialState: { stateReset },
   reducers: {
     loginUserCart: (state, action) => {
       state.cart = { ...state.cart, ...action.payload };
     },
     logoutUserCart: (state, action) => {
+      // return stateReset;
       state.cart = stateReset.cart;
     },
   },

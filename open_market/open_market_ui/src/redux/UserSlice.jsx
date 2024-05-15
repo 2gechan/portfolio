@@ -23,16 +23,6 @@ export const UserSlice = createSlice({
     logout: (state) => {
       state.user = stateReset.user;
     },
-    // (state) => {
-    //   state.user = {
-    //     u_id: "",
-    //     u_password: "",
-    //     u_name: "",
-    //     u_nickname: "",
-    //     u_phone: "",
-    //     u_point: 0,
-    //   };
-    // },
   },
 });
 

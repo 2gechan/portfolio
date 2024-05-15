@@ -9,6 +9,7 @@ import com.gechan.projectshop.models.product.ProductDto;
 import com.gechan.projectshop.models.user.CartDto;
 import com.gechan.projectshop.models.user.CartOutDTO;
 import com.gechan.projectshop.service.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @Service
 @Primary
+@Slf4j
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
@@ -56,6 +58,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDto> prodListSelect(long c_seq) {
+        log.debug("{} 카테고리 번호", c_seq);
         if (c_seq < 1) return productRepository.findAll(); // 전체
         else return productRepository.prodInCategory(c_seq); // 카테고리별
     }

@@ -35,7 +35,7 @@ public class CartServiceImpl implements CartService {
         if (userService.findById(u_id) != null) {
             CartDto cart = new CartDto();
             cart.setCa_pseq(p_seq);
-            cart.setCa_uId(u_id);
+            cart.setCa_u_id(u_id);
             cartRepository.save(cart);
         }
 

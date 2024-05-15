@@ -19,6 +19,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public long findCategory(String c_name) {
+
         CategoryVO categoryVO = categoryRepository.findByCName(c_name);
         long p_cseq;
         if (categoryVO == null) {
@@ -30,7 +31,8 @@ public class CategoryServiceImpl implements CategoryService {
         p_cseq = categoryVO.getC_seq();
         categoryVO.setC_pcount(categoryVO.getC_pcount() + 1);
         categoryRepository.save(categoryVO);
-        this.findCategory("전체"); // 전체도 개수 하나 추가해주기
+        // this.findCategory("전체"); // 전체도 개수 하나 추가해주기
+        // 무한루프 도는거 아님?
 
         return p_cseq;
     }

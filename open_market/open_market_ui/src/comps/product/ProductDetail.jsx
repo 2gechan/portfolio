@@ -44,11 +44,12 @@ const ProductDetail = () => {
     setPInfo({ ...pInfo, p_like: data });
   };
 
-  const imageChange = (e) => {
-    const mainImg = pInfo.p_main_image;
-    console.log(mainImg);
-  };
+  // const imageChange = (e) => {
+  //   const mainImg = pInfo.p_main_image;
+  //   console.log(mainImg);
+  // };
 
+  // 장바구니 담을 때 스토어에 담긴 카트 정보 업데이트 필요
   const cartIn = async () => {
     const res = await fetch(`cartIn?p_seq=${p_seq}&u_id=${loginUser.u_id}`, {
       method: "GET",

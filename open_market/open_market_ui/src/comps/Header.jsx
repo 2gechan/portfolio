@@ -7,7 +7,7 @@ const Header = () => {
   const [visible, setVisible] = useState(false);
 
   const loginUser = useSelector((state) => state.user.user) || {};
-  // const cartList = useSelector((state) => state.cart.cart) || {};
+  const cartList = useSelector((state) => Object.values(state.cart.cart)) || [];
   const dispatch = useDispatch();
   const u_id = loginUser.u_id;
 
@@ -32,6 +32,15 @@ const Header = () => {
     loginSessionRmv();
     dispatch(logout());
   };
+
+  const cartListPrint = cartList.map((item) => {
+    return (
+      <div key={item.cart_p_name}>
+        <h1>{item.cart_p_name}</h1>
+        <h1>{item.cart_p_price}</h1>
+      </div>
+    );
+  });
 
   // useEffect(() => {
   //   const userInfoUpdate = () => {
@@ -79,13 +88,7 @@ const Header = () => {
           onMouseLeave={cartMouseLeave}
         >
           <li>CART</li>
-          {visible ? (
-            <div className="cart_box">
-              <span>카트</span>
-            </div>
-          ) : (
-            <></>
-          )}
+          {visible ? <div className="cart_box">{cartListPrint}</div> : <></>}
         </NavLink>
 
         <div className="search_form">
